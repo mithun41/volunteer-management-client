@@ -31,7 +31,7 @@ const Slider = () => {
     },
   ];
   return (
-    <div className="w-full h-[500px] relative overflow-hidden z-0">
+    <div className="w-full h-[550px] relative overflow-hidden z-0">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={30}

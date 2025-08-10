@@ -6,7 +6,7 @@ import Loading from "../Components/Loading";
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = use(AuthContext);
   if (loading) {
-    <Loading></Loading>;
+    return <Loading></Loading>;
   }
   if (!user) {
     return <Navigate to="/login" />;

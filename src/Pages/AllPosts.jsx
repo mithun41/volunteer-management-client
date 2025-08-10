@@ -7,14 +7,33 @@ const AllPosts = () => {
   const posts = useLoaderData();
   const [isTable, setIsTable] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 8; // Number of cards per page
+
   const navigate = useNavigate();
 
   const filteredPosts = posts.filter((post) =>
     post.title.toLowerCase().includes(searchText.toLowerCase())
   );
 
+  // Pagination logic for cards view
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Reset to page 1 when searchText or isTable changes
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchText, isTable]);
+
   return (
-    <div className="w-11/12 mx-auto my-8 bg-white text-black dark:bg-gray-800 dark:text-white">
+    <div className="w-11/12 mx-auto my-8 bg-base-200 text-black dark:bg-gray-800 dark:text-white">
       <h2 className="text-2xl font-bold text-center mb-6 text-gray-900 dark:text-white">
         All Volunteer Needs Posts
       </h2>
@@ -46,7 +65,7 @@ const AllPosts = () => {
 
       {/* Layout */}
       {isTable ? (
-        // 📄 Table View
+        // 📄 Table View (no pagination)
         <div className="overflow-x-auto">
           <table className="table w-full border text-sm text-gray-900 dark:text-white">
             <thead className="bg-gray-100 dark:bg-gray-800">
@@ -82,12 +101,48 @@ const AllPosts = () => {
           </table>
         </div>
       ) : (
-        // 📦 Card View
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPosts.map((post) => (
-            <PostCard key={post._id} post={post} />
-          ))}
-        </div>
+        // 📦 Card View with pagination
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {currentPosts.map((post) => (
+              <PostCard key={post._id} post={post} />
+            ))}
+          </div>
+
+          {/* Pagination Controls */}
+          <div className="flex justify-center mt-6 space-x-2">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="btn btn-sm btn-outline"
+            >
+              Prev
+            </button>
+
+            {[...Array(totalPages)].map((_, idx) => {
+              const pageNum = idx + 1;
+              return (
+                <button
+                  key={pageNum}
+                  onClick={() => handlePageChange(pageNum)}
+                  className={`btn btn-sm ${
+                    currentPage === pageNum ? "btn-primary" : "btn-outline"
+                  }`}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
+
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="btn btn-sm btn-outline"
+            >
+              Next
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

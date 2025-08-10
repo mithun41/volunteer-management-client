@@ -1,7 +1,7 @@
 a.active {
   text-decoration: underline;
-  color: white;
-  background: green;
+  color: green;
+
   padding: 6px 14px;
   margin-top: -5px;
 }

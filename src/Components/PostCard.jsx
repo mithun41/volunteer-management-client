@@ -5,7 +5,7 @@ const PostCard = ({ post }) => {
   const { _id, title, category, thumbnail, deadline } = post;
 
   return (
-    <div className="border rounded-lg shadow p-4 flex flex-col justify-between">
+    <div className="bg-white  rounded-lg shadow-lg p-4 flex flex-col justify-between">
       <img
         src={thumbnail}
         alt={title}

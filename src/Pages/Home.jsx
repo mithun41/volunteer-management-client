@@ -5,6 +5,7 @@ import PostCard from "../Components/PostCard";
 import { useNavigate } from "react-router";
 import SuccessStories from "../Components/SuccessStories";
 import SecondSection from "../Components/SecondSection";
+import FeaturedVolunteers from "../Components/FeaturedVolunteers";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -16,19 +17,19 @@ const Home = () => {
         const sorted = res.data.sort(
           (a, b) => new Date(a.deadline) - new Date(b.deadline)
         );
-        setPosts(sorted.slice(0, 6));
+        setPosts(sorted.slice(0, 8));
       })
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div className="bg-white text-black dark:bg-gray-900 dark:text-white">
+    <div className="bg-base-200 text-black dark:bg-gray-900 dark:text-white">
       <title>Home | Volunteer-Management</title>
       <Slider></Slider>
       <div>
         <h2 className="text-2xl font-bold mb-6 text-center mt-8">
           Volunteer Needs Now
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8 w-11/12 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-8 w-11/12 mx-auto">
           {posts.map((post) => (
             <PostCard key={post._id} post={post}></PostCard>
           ))}
@@ -42,6 +43,7 @@ const Home = () => {
           See All Volunteer Posts
         </button>
       </div>
+      <FeaturedVolunteers></FeaturedVolunteers>
       <SuccessStories></SuccessStories>
       <SecondSection></SecondSection>
     </div>

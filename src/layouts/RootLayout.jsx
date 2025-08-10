@@ -6,7 +6,7 @@ import "./root.css";
 
 const RootLayout = () => {
   return (
-    <div className="bg-white dark:bg-gray-800">
+    <div className="bg-base-200 dark:bg-gray-800">
       <Navbar></Navbar>
       <Outlet></Outlet>
       <Footer></Footer>

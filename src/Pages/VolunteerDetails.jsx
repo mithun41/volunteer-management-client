@@ -1,5 +1,5 @@
 import React, { use, useState } from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 const VolunteerDetails = () => {
   const { user } = use(AuthContext);
   const data = useLoaderData();
+  const navigate = useNavigate();
   // console.log(user.accessToken);
 
   const [volunteerCount, setVolunteerCount] = useState(data.needed);
@@ -142,14 +143,25 @@ const VolunteerDetails = () => {
             </div>
           </div>
 
-          <button
-            className="btn btn-primary w-full mt-4"
-            onClick={handleJoinClick}
-          >
-            {volunteerCount === 0
-              ? "No Volunteers Needed"
-              : "Join as Volunteer"}
-          </button>
+          {user ? (
+            <button
+              className="btn btn-primary w-full mt-4"
+              onClick={handleJoinClick}
+            >
+              {volunteerCount === 0
+                ? "No Volunteers Needed"
+                : "Join as Volunteer"}
+            </button>
+          ) : (
+            <button
+              className="btn btn-primary w-full mt-4"
+              onClick={() => navigate("/login")}
+            >
+              {volunteerCount === 0
+                ? "No Volunteers Needed"
+                : "Join as Volunteer"}
+            </button>
+          )}
         </div>
       </div>
 

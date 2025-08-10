@@ -33,7 +33,7 @@ const testimonials = [
 
 const SecondSection = () => {
   return (
-    <section className="my-16 bg-gradient-to-br from-green-100 via-red-50 to-[#66AFF7] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12">
+    <section className="mt-16 bg-gradient-to-br from-green-100 via-red-50 to-[#66AFF7] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12">
       <h2 className="text-3xl font-bold text-center mb-10 text-orange-500 dark:text-white">
         What Our <span className="text-[#66AFF7]">Volunteers</span> Say 💬
       </h2>

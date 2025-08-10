@@ -34,11 +34,7 @@ export const router = createBrowserRouter([
       {
         path: "/details/:id",
 
-        element: (
-          <PrivateRoutes>
-            <VolunteerDetails></VolunteerDetails>
-          </PrivateRoutes>
-        ),
+        element: <VolunteerDetails></VolunteerDetails>,
         loader: ({ params }) =>
           fetch(
             `https://volunteer-management-server-drab.vercel.app/posts/${params.id}`

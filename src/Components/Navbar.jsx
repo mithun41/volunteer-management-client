@@ -108,7 +108,7 @@ const Navbar = () => {
                 <Link
                   to={"/login"}
                   onClick={handleSignOut}
-                  className="btn btn-outline z-10 w-[90px] btn-success -ml-4 absolute hidden group-hover:block pt-2 "
+                  className="btn  z-10 w-[90px] -ml-4 absolute hidden group-hover:block pt-2 "
                 >
                   Sign Out
                 </Link>
