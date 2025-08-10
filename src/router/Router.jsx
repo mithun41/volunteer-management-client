@@ -13,6 +13,7 @@ import UpdatePost from "../Components/UpdatePost";
 import MyVolunteerRequests from "../Pages/MyVolunteerRequests";
 import TermsOfService from "../Components/TermsOfService";
 import Privacy from "../Components/Privacy";
+import About from "../Pages/About";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,7 @@ export const router = createBrowserRouter([
         loader: () =>
           fetch("https://volunteer-management-server-drab.vercel.app/posts"),
       },
+      { path: "about", Component: About },
       {
         path: "/my-posts",
         element: (

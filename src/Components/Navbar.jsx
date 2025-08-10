@@ -25,18 +25,23 @@ const Navbar = () => {
       </li>
 
       {/* Hover Dropdown */}
-      <li className="relative group">
-        <span className="cursor-pointer flex items-center gap-1">
-          My Posts <IoIosArrowDown className="mt-[2px]" />
-        </span>
-        <ul className="absolute z-50 hidden group-hover:flex flex-col bg-base-100 dark:bg-gray-800 rounded-md shadow-lg p-2  w-56">
-          <li>
-            <NavLink to="/my-posts">My Volunteer Need Post</NavLink>
-          </li>
-          <li>
-            <NavLink to="/my-requests">My Volunteer Request Post</NavLink>
-          </li>
-        </ul>
+      {user && (
+        <li className="relative group">
+          <span className="cursor-pointer flex items-center gap-1">
+            My Posts <IoIosArrowDown className="mt-[2px]" />
+          </span>
+          <ul className="absolute z-50 hidden group-hover:flex flex-col bg-base-100 dark:bg-gray-800 rounded-md shadow-lg p-2  w-56">
+            <li>
+              <NavLink to="/my-posts">My Volunteer Need Post</NavLink>
+            </li>
+            <li>
+              <NavLink to="/my-requests">My Volunteer Request Post</NavLink>
+            </li>
+          </ul>
+        </li>
+      )}
+      <li>
+        <NavLink to={"/about"}>About</NavLink>
       </li>
     </>
   );
